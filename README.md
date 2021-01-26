@@ -44,10 +44,6 @@ By default, docker-airflow runs Airflow with **SequentialExecutor** :
 
 If you want to run another executor, use the other docker-compose.yml files provided in this repository.
 
-For **CeleryExecutor** :
-
-    docker-compose -f docker-compose.yml up -d
-
 Docker swarm mode:
 
     docker stack deploy -c docker-compose.yml data_works_cloud

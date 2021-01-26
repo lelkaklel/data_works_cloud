@@ -5,7 +5,7 @@ services:
         # command: redis-server --requirepass redispass
 
     postgres:
-        image: postgres:9.6
+        image: postgres:13.1-alpine
         environment:
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
@@ -115,11 +115,23 @@ services:
             - "8090:8080"
         volumes:
             - type: bind
-              source: ~/sources/data_works_cloud/shared/zeppelin/notebooks
+              source: ~/sources/data_works_cloud/shared/zeppelin/notebook
               target: /zeppelin/notebook
-            - type: bind
-              source: ~/sources/data_works_cloud/shared/zeppelin/conf
-              target: /zeppelin/conf
+            # - type: bind
+            #  source: ~/sources/data_works_cloud/shared/zeppelin/conf
+            #  target: /zeppelin/conf
             - type: bind
               source: ~/sources/data_works_cloud/shared/zeppelin/logs
               target: /zeppelin/logs
+            - zeppelin-interpreter:/zeppelin/interpreter
+    omnidb:
+        image: taivokasper/omnidb
+        ports:
+            - "8070:8080"
+            - "25482:25482"
+        volumes:
+            - config-omnidb:/etc/omnidb
+
+volumes:
+    config-omnidb:
+    zeppelin-interpreter:
