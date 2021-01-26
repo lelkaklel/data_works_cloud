@@ -1,11 +1,11 @@
-# VERSION 1.10.9
-# AUTHOR: Matthieu "Puckel_" Roisil
+# VERSION 2.0.0
+# AUTHOR: lelkaklel
 # DESCRIPTION: Basic Airflow container
-# BUILD: docker build --rm -t puckel/docker-airflow .
-# SOURCE: https://github.com/puckel/docker-airflow
+# BUILD: docker build --rm -t lelkaklel/docker-airflow .
+# SOURCE: https://github.com/lelkaklel/data_works_cloud
 
 FROM python:3.8-slim-buster
-LABEL maintainer="Puckel_"
+LABEL maintainer="lelkaklel"
 
 # Never prompt the user for choices on installation/configuration of packages
 ENV DEBIAN_FRONTEND noninteractive
