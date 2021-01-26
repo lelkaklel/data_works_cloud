@@ -1,6 +1,6 @@
-shared/
-!shared/airflow/logs
-!shared/airflow/dags
-!shared/zeppelin/notebook
-!shared/zeppelin/logs
+shared/*
+!shared/airflow/logs/
+!shared/airflow/dags/
+!shared/zeppelin/notebook/
+!shared/zeppelin/logs/
 
