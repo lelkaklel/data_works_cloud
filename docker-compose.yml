@@ -16,7 +16,7 @@ services:
             - "5432:5432"
         volumes:
             - type: bind
-              source: ~/data/pgdata
+              source: /opt/data_works_cloud/data/pgdata
               target: /var/lib/postgresql/data/pgdata
 
     webserver:
@@ -35,11 +35,11 @@ services:
             # - REDIS_PASSWORD=redispass
         volumes:
             - type: bind
-              source: ~/sources/data_works_cloud/shared/airflow/dags
+              source: /opt/data_works_cloud/shared/airflow/dags
               target: /usr/local/airflow/dags
             # Uncomment to include custom plugins
             - type: bind
-              source: ~/sources/data_works_cloud/shared/airflow/plugins
+              source: /opt/data_works_cloud/shared/airflow/plugins
               target: /usr/local/airflow/plugins
         ports:
             - "8080:8080"
@@ -72,11 +72,11 @@ services:
             - webserver
         volumes:
             - type: bind
-              source: ~/sources/data_works_cloud/shared/airflow/dags
+              source: /opt/data_works_cloud/shared/airflow/dags
               target: /usr/local/airflow/dags
             # Uncomment to include custom plugins
             - type: bind
-              source: ~/sources/data_works_cloud/shared/airflow/plugins
+              source: /opt/data_works_cloud/shared/airflow/plugins
               target: /usr/local/airflow/plugins
         environment:
             - LOAD_EX=n
@@ -90,17 +90,17 @@ services:
 
     worker:
         image: lelkaklel/docker-airflow:latest
-        
+
         restart: always
         depends_on:
             - scheduler
         volumes:
             - type: bind
-              source: ~/sources/data_works_cloud/shared/airflow/dags
+              source: /opt/data_works_cloud/shared/airflow/dags
               target: /usr/local/airflow/dags
             # Uncomment to include custom plugins
             - type: bind
-              source: ~/sources/data_works_cloud/shared/airflow/plugins
+              source: /opt/data_works_cloud/shared/airflow/plugins
               target: /usr/local/airflow/plugins
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
@@ -116,13 +116,13 @@ services:
             - "8090:8080"
         volumes:
             - type: bind
-              source: ~/sources/data_works_cloud/shared/zeppelin/notebook
+              source: /opt/data_works_cloud/shared/zeppelin/notebook
               target: /zeppelin/notebook
             # - type: bind
             #  source: ~/sources/data_works_cloud/shared/zeppelin/conf
             #  target: /zeppelin/conf
             - type: bind
-              source: ~/sources/data_works_cloud/shared/zeppelin/logs
+              source: /opt/data_works_cloud/shared/zeppelin/logs
               target: /zeppelin/logs
             - zeppelin-interpreter:/zeppelin/interpreter
     omnidb:
