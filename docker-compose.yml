@@ -26,7 +26,7 @@ services:
             - postgres
             - redis
         environment:
-            - LOAD_EX=n
+            - LOAD_EX=y
             - FERNET_KEY=GoCsZEeRZO39iOoMvKk_-DPEEXih2DnU-utih1ddijk=
             - EXECUTOR=Celery
             # - POSTGRES_USER=airflow
