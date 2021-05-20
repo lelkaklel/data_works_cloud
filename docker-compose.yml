@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.8'
 services:
     redis:
         image: 'redis:5.0.5'
@@ -29,9 +29,12 @@ services:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
-            # - POSTGRES_USER=airflow
-            # - POSTGRES_PASSWORD=airflow
-            # - POSTGRES_DB=airflow
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+            - AIRFLOW_HOME=/usr/local/airflow/
+            - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@data_works_cloud_postgres:5432/airflow
+            - AIRFLOW__CELERY__RESULT_BACKEND=db+postgresql://airflow:airflow@data_works_cloud_postgres/airflow
             # - REDIS_PASSWORD=redispass
         volumes:
             - type: bind
@@ -43,8 +46,8 @@ services:
               target: /usr/local/airflow/plugins
         ports:
             - "8080:8080"
-        # configs:
-        #    - source: webserver_config
+        #configs:
+        #    - source: airflow_config
         #      target: /usr/local/airflow/airflow.cfg
         command: webserver
         healthcheck:
@@ -78,13 +81,19 @@ services:
             - type: bind
               source: /opt/data_works_cloud/shared/airflow/plugins
               target: /usr/local/airflow/plugins
+        #configs:
+        #    - source: airflow_config
+        #      target: /usr/local/airflow/airflow.cfg
         environment:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
-            # - POSTGRES_USER=airflow
-            # - POSTGRES_PASSWORD=airflow
-            # - POSTGRES_DB=airflow
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+            - AIRFLOW_HOME=/usr/local/airflow/
+            - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@data_works_cloud_postgres:5432/airflow
+            - AIRFLOW__CELERY__RESULT_BACKEND=db+postgresql://airflow:airflow@data_works_cloud_postgres/airflow
             # - REDIS_PASSWORD=redispass
         command: scheduler
 
@@ -102,14 +111,21 @@ services:
             - type: bind
               source: /opt/data_works_cloud/shared/airflow/plugins
               target: /usr/local/airflow/plugins
+        #configs:
+        #    - source: airflow_config
+        #      target: /usr/local/airflow/airflow.cfg
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
-            # - POSTGRES_USER=airflow
-            # - POSTGRES_PASSWORD=airflow
-            # - POSTGRES_DB=airflow
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+            - AIRFLOW_HOME=/usr/local/airflow/
+            - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@data_works_cloud_postgres:5432/airflow
+            - AIRFLOW__CELERY__RESULT_BACKEND=db+postgresql://airflow:airflow@data_works_cloud_postgres/airflow
             # - REDIS_PASSWORD=redispass
         command: celery worker
+
     zeppelin:
         image: apache/zeppelin:0.9.0
         ports:
@@ -139,3 +155,7 @@ services:
 volumes:
     config-omnidb:
     zeppelin-interpreter:
+
+#configs:
+#    airflow_config:
+#        file: ./config/airflow.cfg
