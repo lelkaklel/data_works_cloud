@@ -26,8 +26,8 @@ services:
             - postgres
             - redis
         environment:
-            - LOAD_EX=n
-            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - LOAD_EX=y
+            - FERNET_KEY=GoCsZEeRZO39iOoMvKk_-DPEEXih2DnU-utih1ddijk=
             - EXECUTOR=Celery
             # - POSTGRES_USER=airflow
             # - POSTGRES_PASSWORD=airflow
@@ -80,7 +80,7 @@ services:
               target: /usr/local/airflow/plugins
         environment:
             - LOAD_EX=n
-            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - FERNET_KEY=GoCsZEeRZO39iOoMvKk_-DPEEXih2DnU-utih1ddijk=
             - EXECUTOR=Celery
             # - POSTGRES_USER=airflow
             # - POSTGRES_PASSWORD=airflow
@@ -103,7 +103,7 @@ services:
               source: /opt/data_works_cloud/shared/airflow/plugins
               target: /usr/local/airflow/plugins
         environment:
-            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - FERNET_KEY=GoCsZEeRZO39iOoMvKk_-DPEEXih2DnU-utih1ddijk=
             - EXECUTOR=Celery
             # - POSTGRES_USER=airflow
             # - POSTGRES_PASSWORD=airflow
