@@ -45,7 +45,7 @@ services:
               source: /opt/data_works_cloud/shared/airflow/plugins
               target: /usr/local/airflow/plugins
         ports:
-            - "8080:8080"
+            - "8060:8080"
         #configs:
         #    - source: airflow_config
         #      target: /usr/local/airflow/airflow.cfg
